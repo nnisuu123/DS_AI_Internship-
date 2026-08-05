@@ -1,36 +1,69 @@
-# Welcome to Shopping Cart Program
-
-print("===================================")
-print("      WELCOME TO SHOPPING")
-print("===================================")
+print("Welcome to Fruit Shopping")
 
 cart = []
 
-# Taking input from the user
-while True:
-    item = input("Enter your item (type 'done' to finish): ")
+# Add fruits until user enters done
+print("\nEnter fruits (type 'done' to stop adding):")
 
-    if item.lower() == "done":
+while True:
+    fruit = input("Enter fruit: ")
+
+    if fruit.lower() == "done":
         break
 
-    cart.append(item)
+    cart.append(fruit)
+    print(fruit, "added successfully!")
 
-print("\n==============================")
-print("Cart Type : List")
-print("==============================")
-print(cart)
+# CRUD Operations
+while True:
+    print("\n1. View Cart")
+    print("2. Update Fruit")
+    print("3. Delete Fruit")
+    print("4. Checkout")
 
-print("\nTotal Items in Cart :", len(cart))
+    choice = input("Enter your choice: ")
 
-# Convert list to tuple
-cart_tuple = tuple(cart)
+    # READ
+    if choice == "1":
+        print("\nShopping Cart:", cart)
 
-print("\n==============================")
-print("Cart Type : Tuple")
-print("==============================")
-print(cart_tuple)
+    # UPDATE
+    elif choice == "2":
+        old_fruit = input("Enter fruit to update: ")
 
-print("\n==============================")
-print("Checkout Completed")
-print("Thank You for Shopping!")
-print("==============================")
+        if old_fruit in cart:
+            new_fruit = input("Enter new fruit: ")
+            index = cart.index(old_fruit)
+            cart[index] = new_fruit
+            print("Fruit updated successfully!")
+        else:
+            print("Fruit not found!")
+
+    # DELETE
+    elif choice == "3":
+        fruit = input("Enter fruit to delete: ")
+
+        if fruit in cart:
+            cart.remove(fruit)
+            print("Fruit deleted successfully!")
+        else:
+            print("Fruit not found!")
+
+    # CHECKOUT
+    elif choice == "4":
+        print("\nCart Type : List")
+        print(cart)
+
+        print("\nTotal Items :", len(cart))
+
+        cart_tuple = tuple(cart)
+
+        print("\nCart Type : Tuple")
+        print(cart_tuple)
+
+        print("\nCheckout Complete!")
+        print("Thank you for shopping!")
+        break
+
+    else:
+        print("Invalid choice!")
